@@ -6,8 +6,7 @@ import 'package:riverpod_example/myshowdialog.dart';
 class MyButton extends HookConsumerWidget {
 
   var counter = Counter();
-  final MyDialog mydialog = MyDialog();
-
+  
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
