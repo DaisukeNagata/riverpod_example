@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'main.dart';
-
+import 'package:riverpod_example/mycounter.dart';
+import 'package:riverpod_example/myshowdialog.dart';
 
 class MyButton extends HookConsumerWidget {
-  var app = MyApp();
-  var st = "";
+
+  var counter = Counter();
+  final MyDialog mydialog = MyDialog();
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
@@ -14,13 +15,17 @@ class MyButton extends HookConsumerWidget {
       home: Scaffold(
         appBar: AppBar(title: Text('Example')),
         body: Center(
-          child: Text(st),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(ref.watch(counterProvider).toString()),
+              Text(ref.watch(counter.counterStateProvider).toString()),
+            ],
+          )
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            ref.watch(app.counterStateProvider);
-            var number = ref.read(app.counterStateProvider.state).state++;
-            st = number.toString();
+            MyDialog().showMyDialog(context, ref, counter);
           },
           tooltip: 'Increment',
           child: Icon(Icons.add),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_example/button.dart';
+import 'package:riverpod_example/mybutton.dart';
 
 void main() {
   runApp(
@@ -11,14 +11,12 @@ void main() {
 }
 
 class MyApp extends HookConsumerWidget {
-  var counterStateProvider = StateProvider<int>((ref) {
-    return 0;
-  });
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyButton(),
+      home: ProviderScope(child: MyButton()),
     );
   }
 }
